@@ -1,0 +1,23 @@
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Whitelist some files
+!.gitignore
+!README.md
+
+# Ignore all files named .DS_Store or ending with .log
+**/.DS_Store
+**.log
+
+!wwwroot
+wwwroot/*
+
+!nginx
+nginx/*
+!nginx/conf.d/default.conf
+!nginx/conf.d/demo.conf
