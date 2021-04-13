@@ -22,7 +22,7 @@ Other useful command:
 - `docker-compose start php`
 - `docker exec -it php sh`
 
-After that completes, follow the steps from the [src/README.md](src/README.md) file to get your Laravel project added in (or create a new blank one).
+After that completes, follow the steps from the [wwwroot/README.md](wwwroot/README.md) file to get your Laravel project added in (or create a new blank one).
 
 The following are built for our web server, with their exposed ports detailed:
 
