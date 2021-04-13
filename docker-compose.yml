@@ -1,0 +1,95 @@
+version: "3.9"
+
+services:
+  ### PHP-FPM Container #######################################
+
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: php
+    depends_on:
+      - mysql
+      - redis
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:8000"
+    working_dir: /var/www
+    volumes:
+      - ./wwwroot:/var/www
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - app-network
+
+  ### Nginx Server Container ##################################
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    depends_on:
+      - php
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      TZ: Asia/Shanghai
+    volumes:
+      - ./wwwroot:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/log:/var/log/nginx
+    networks:
+      - app-network
+
+  ### MySQL Container #########################################
+
+  mysql:
+    image: mysql/mysql-server:latest-aarch64
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      TZ: Asia/Shanghai
+    volumes:
+      - mysqldata:/var/lib/mysql      
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    restart: always
+    networks:
+      - app-network
+
+  ### Redis Container #########################################
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      TZ: Asia/Shanghai
+    volumes:
+      - redisdata:/data
+      - ./redis/conf:/usr/local/etc/redis
+      - ./redis/log:/log
+    # 指定配置文件启动redis
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  mysqldata:
+    driver: local
+  redisdata:
+    driver: local
