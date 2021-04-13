@@ -2,7 +2,7 @@
 A pretty simplified Docker Compose workflow that sets up a LNMP network of containers for local Laravel development on Mac M1.
 
 - `docker_php 130MB`
-- `redis 2.3MB`
+- `redis 32.3MB`
 - `nginx 20.5MB`
 - `mysql/mysql-server 436MB`
 
