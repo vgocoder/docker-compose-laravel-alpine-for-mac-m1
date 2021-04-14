@@ -32,6 +32,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8000:8000"
+      - "8080:8080"
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
       TZ: Asia/Shanghai
