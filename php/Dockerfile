@@ -51,17 +51,15 @@ RUN apk add --no-cache \
      && rm -rf /tmp/pear \
      && apk del -f .build-deps
 
+# Use the default production configuration
+RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Install composer
-COPY ./composer.phar /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
-WORKDIR /var/www
+# Change current user to www
+USER www-data
 
-# Use the default production configuration
-RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
-# Expose port 9000 and start php-fpm server
+# Exxpose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]

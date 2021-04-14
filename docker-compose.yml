@@ -13,12 +13,10 @@ services:
       - redis
     restart: unless-stopped
     tty: true
-    ports:
-      - "8000:8000"
     working_dir: /var/www
     volumes:
       - ./wwwroot:/var/www
-      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/additional.ini:/usr/local/etc/php/conf.d/additional.ini
     networks:
       - app-network
 
