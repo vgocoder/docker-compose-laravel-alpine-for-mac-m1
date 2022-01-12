@@ -49,7 +49,6 @@ services:
   mysql:
     image: mysql/mysql-server:latest-aarch64
     container_name: mysql
-    restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
@@ -57,7 +56,7 @@ services:
       MYSQL_ROOT_PASSWORD: 12345678
       TZ: Asia/Shanghai
     volumes:
-      - mysqldata:/var/lib/mysql      
+      - mysqldata:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     restart: always
     networks:
