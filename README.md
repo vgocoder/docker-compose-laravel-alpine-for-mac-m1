@@ -11,10 +11,10 @@ The following are built for our web server, with their exposed ports detailed:
 
 The images are minimized as much as possible:
 
-- `docker_php 130MB`
-- `redis 32.3MB`
-- `nginx 20.5MB`
-- `mysql/mysql-server 436MB`
+- `docker_php 135MB`
+- `redis 28.1MB`
+- `nginx 22.1MB`
+- `mysql/mysql-server 489MB`
 
 ## **Prerequisites**
 
@@ -81,6 +81,7 @@ follow the steps from the [wwwroot/README.md](wwwroot/README.md) file to get you
 - `Zend OPcache`
 - `zip`
 - `zlib`
+- `xdebug`
 
 ### **Nginx Service**
 - `Accessing the Container Shell`

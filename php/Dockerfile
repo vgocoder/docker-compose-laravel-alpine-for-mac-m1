@@ -46,8 +46,8 @@ RUN apk add --no-cache \
 	&& apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
 		libmemcached-dev \
         zlib-dev \
-     && pecl install redis memcached \
-     && docker-php-ext-enable redis memcached \
+     && pecl install redis memcached xdebug \
+     && docker-php-ext-enable redis memcached xdebug \
      && rm -rf /tmp/pear \
      && apk del -f .build-deps
 

@@ -34,6 +34,8 @@ services:
       - "443:443"
       - "8000:8000"
       - "8080:8080"
+       # Add the port for Xdebug here
+      - "9001:9001"
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
       TZ: Asia/Shanghai
