@@ -138,3 +138,8 @@ follow the steps from the [wwwroot/README.md](wwwroot/README.md) file to get you
     - ./redis/log:/log   
   ```
 
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
